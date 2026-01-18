@@ -1,5 +1,8 @@
 package com.nhnacademy;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Ball {
     private Point point;
     private double radius;
@@ -20,5 +23,18 @@ public class Ball {
 
     public double getRadius() {
         return radius;
+    }
+
+    public void drawBalls(GraphicsContext gc) {
+        Point point = getPoint();
+        double radius = getRadius();
+
+        double x = point.getX() - radius;
+        double y = point.getY() - radius;
+        double w = radius * 2;
+        double h = radius * 2;
+        
+        gc.setFill(Color.BLACK);
+        gc.fillOval(x, y, w, h);
     }
 }

@@ -1,5 +1,6 @@
 package com.nhnacademy;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class PaintableBall extends Ball {
@@ -17,5 +18,20 @@ public class PaintableBall extends Ball {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    @Override
+    public void drawBalls(GraphicsContext gc) {
+        Point point = getPoint();
+        double radius = getRadius();
+        Color color = getColor();
+
+        double x = point.getX() - radius;
+        double y = point.getY() - radius;
+        double w = radius * 2;
+        double h = radius * 2;
+        
+        gc.setFill(color);
+        gc.fillOval(x, y, w, h);
     }
 }

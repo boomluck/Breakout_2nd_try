@@ -8,8 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class WorldDemo extends Application {
-    World world;
+public class PaintableWorldDemo extends Application {
+    PaintableWorld world;
     GraphicsContext gc;
     Canvas canvas;
     Color DEFAULT_COLOR = Color.BLACK;
@@ -19,11 +19,11 @@ public class WorldDemo extends Application {
 
     @Override
     public void start(Stage stage) {
-        world = new World(800, 600);
+        world = new PaintableWorld(800, 600);
         canvas = new Canvas(800, 600);
         gc = canvas.getGraphicsContext2D();
 
-        world.addBall(new Ball(400, 300, 20));
+        world.addRandomBall(5);
 
         world.draw(gc);
 
