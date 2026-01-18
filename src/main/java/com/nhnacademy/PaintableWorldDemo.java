@@ -23,7 +23,7 @@ public class PaintableWorldDemo extends Application {
         canvas = new Canvas(800, 600);
         gc = canvas.getGraphicsContext2D();
 
-        world.addRandomBall(5);
+        world.addRandomBalls(5);
 
         world.draw(gc);
 

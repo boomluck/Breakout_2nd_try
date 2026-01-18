@@ -11,7 +11,7 @@ public class PaintableWorld extends World {
         super(width, height);
     }
 
-    public void addRandomBall(int numberOfBalls) {
+    public void addRandomBalls(int numberOfBalls) {
         for(int i = 0; i < numberOfBalls; i++) {
             double randomRadius = random.nextDouble(10, 50);
             double randomX = random.nextDouble(0, getHeight());
