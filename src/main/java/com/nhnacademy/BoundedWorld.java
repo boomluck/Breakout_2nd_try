@@ -5,5 +5,14 @@ public class BoundedWorld extends MovableWorld{
         super(width, height);
     }
 
+    @Override
+    public void update() {
+        for(Ball ball : getBalls()) {
+            ball.move();
 
+            if(ball.isOutOfBounds(this)) {
+                ball.onBoundaryCollision(this);
+            }
+        }
+    }
 }

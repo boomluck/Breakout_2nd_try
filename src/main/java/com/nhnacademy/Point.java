@@ -17,7 +17,7 @@ public class Point {
         return y;
     }
 
-    public void add(Vector velocity) {
+    public void translate(Vector velocity) {
         this.x += velocity.getDx();
         this.y += velocity.getDy();
     }

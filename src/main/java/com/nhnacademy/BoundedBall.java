@@ -9,12 +9,15 @@ public class BoundedBall extends MovableBall {
 
     @Override
     public boolean isOutOfBounds(World world) {
-        for(Ball ball : world.getBalls()) {
-            return ball.getPoint().getX() <= 0
-                    || ball.getPoint().getX() >= world.getWidth()
-                    || ball.getPoint().getY() <= 0
-                    || ball.getPoint().getY() >= world.getHeight();
-        }
-        return false;
+        Point p = getPoint();
+
+        return p.getX() <= 0
+            || p.getX() >= world.getWidth()
+            || p.getY() <= 0
+            || p.getY() >= world.getHeight();
+    }
+
+    public void onBoundaryCollision(World world) {
+        
     }
 }

@@ -15,6 +15,6 @@ public class MovableBall extends PaintableBall {
     }
 
     public void move() {
-        point.add(velocity);
+        point.translate(velocity);
     }
 }
