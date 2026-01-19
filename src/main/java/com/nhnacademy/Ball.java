@@ -4,8 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Ball {
-    private Point point;
-    private double radius;
+    Point point;
+    double radius;
 
     public Ball(Point point, double radius) {
         this.point = point;
@@ -36,5 +36,14 @@ public class Ball {
         
         gc.setFill(Color.BLACK);
         gc.fillOval(x, y, w, h);
+    }
+
+    public boolean isOutOfBounds(World world) {
+        // BoundedBall에 최초로 등장하는 isOutOfBounds(World world)메서드의 타입 충돌 문제를 해결하기 위한 임시 방편
+        return false;
+    }
+
+    public void move() {
+        // MovableBall에 최초로 등장하는 move()메서드의 타입 충돌 문제를 해결하기 위한 임시 방편
     }
 }

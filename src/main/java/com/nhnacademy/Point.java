@@ -16,4 +16,9 @@ public class Point {
     public double getY() {
         return y;
     }
+
+    public void add(Vector velocity) {
+        this.x += velocity.getDx();
+        this.y += velocity.getDy();
+    }
 }

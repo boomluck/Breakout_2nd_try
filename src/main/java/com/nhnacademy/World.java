@@ -1,9 +1,9 @@
 package com.nhnacademy;
 
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.scene.canvas.GraphicsContext;
 
 public class World {
     double width;
@@ -25,6 +25,10 @@ public class World {
 
     public void addBall(Ball ball) {
         balls.add(ball);
+    }
+
+    public void removeBalls(Ball ball) {
+        balls.remove(ball);
     }
 
     public List<Ball> getBalls() {

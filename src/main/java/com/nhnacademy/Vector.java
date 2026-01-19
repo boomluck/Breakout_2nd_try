@@ -1,33 +1,33 @@
 package com.nhnacademy;
 
 public class Vector {
-    double x;
-    double y;
+    double dx;
+    double dy;
 
-    public Vector(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public Vector(double dx, double dy) {
+        this.dx = dx;
+        this.dy = dy;
     }
 
-    public double getX() {
-        return x;
+    public double getDx() {
+        return dx;
     }
 
-    public double getY() {
-        return y;
+    public double getDy() {
+        return dy;
     }
 
-    public Vector add(Vector vector) {
-        return new Vector(this.x + vector.getX(), this.y + vector.getY());
-    }
+    public double reflectDx() { return dx = -dx; }
+
+    public double reflectDy() { return dy = -dy; }
 
     public double magnitude() {
-        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+        return Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));
     }
 
     public Vector normalize() {
         double magnitude = magnitude();
         
-        return new Vector(this.x/magnitude, this.y/magnitude);
+        return new Vector(this.dx/magnitude, this.dy/magnitude);
     }
 }

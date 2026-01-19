@@ -13,4 +13,8 @@ public class MovableBall extends PaintableBall {
     public Vector getVelocity() {
         return velocity;
     }
+
+    public void move() {
+        point.add(velocity);
+    }
 }
