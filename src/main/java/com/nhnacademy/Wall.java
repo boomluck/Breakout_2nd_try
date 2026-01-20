@@ -1,6 +1,6 @@
 package com.nhnacademy;
 
-public enum Walls {
+public enum Wall {
     TOP,
     BOTTOM,
     LEFT,

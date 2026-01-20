@@ -19,15 +19,28 @@ public class BoundedWorld extends MovableWorld{
         }
     }
 
+    public void checkBallCollision() {
+        for(int i = 0; i < getBalls().size(); i++) {
+            for(int j = i + 1; j < getBalls().size(); j++) {
+                Ball a = balls.get(i);
+                Ball b = balls.get(j);
+
+                if(a.getPoint().distanceTo(b.getPoint()) <= a.getRadius() + b.getRadius()) {
+                    a.collisionWithBall(b);
+                }
+            }
+        }
+    }
+
     @Override
     public void update() {
         for(Ball ball : getBalls()) {
             ball.move();
 
-            Walls collisionTo = ball.collidesTo(this);
+            Wall wallCollision = ball.checkWallCollision(this);
 
-            if (collisionTo != Walls.NONE) {
-                ball.reflect(collisionTo);
+            if (wallCollision != Wall.NONE) {
+                ball.collisionWithWall(wallCollision);
             }
         }
     }

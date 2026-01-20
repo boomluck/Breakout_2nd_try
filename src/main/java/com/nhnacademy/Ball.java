@@ -38,15 +38,19 @@ public class Ball {
         gc.fillOval(x, y, w, h);
     }
 
-    public Walls collidesTo(World world) {
+    public Wall checkWallCollision(World world) {
         // BoundedBall에 최초로 등장하는 isOutOfBounds(World world)메서드의 타입 충돌 문제를 해결하기 위한 임시 방편
-        return Walls.NONE;
+        return Wall.NONE;
     }
 
     public void move() {
         // MovableBall에 최초로 등장하는 move()메서드의 타입 충돌 문제를 해결하기 위한 임시 방편
     }
 
-    public void reflect(Walls collisionTo) {
+    public void collisionWithWall(Wall collisionTo) {
+    }
+
+    public void collisionWithBall(Ball other) {
+
     }
 }

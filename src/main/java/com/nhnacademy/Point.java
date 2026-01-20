@@ -21,4 +21,11 @@ public class Point {
         this.x += velocity.getDx();
         this.y += velocity.getDy();
     }
+
+    public double distanceTo(Point other) {
+        double dx = getX() - other.getX();
+        double dy = getY() - other.getY();
+
+        return Math.sqrt(dx * dx + dy * dy);
+    }
 }

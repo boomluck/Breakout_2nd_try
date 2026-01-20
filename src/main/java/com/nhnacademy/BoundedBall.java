@@ -8,21 +8,21 @@ public class BoundedBall extends MovableBall {
     }
 
     @Override
-    public Walls collidesTo(World world) {
+    public Wall checkWallCollision(World world) {
         Point p = getPoint();
         double r = getRadius();
 
-        if(p.getX() - r <= 0) { return Walls.LEFT; }
-        if(p.getX() + r >= world.getWidth()) { return Walls.RIGHT; }
-        if(p.getY() - r <= 0) { return Walls.TOP; }
-        if(p.getY() + r >= world.getHeight()) { return Walls.BOTTOM; }
+        if(p.getX() - r <= 0) { return Wall.LEFT; }
+        if(p.getX() + r >= world.getWidth()) { return Wall.RIGHT; }
+        if(p.getY() - r <= 0) { return Wall.TOP; }
+        if(p.getY() + r >= world.getHeight()) { return Wall.BOTTOM; }
 
-        return Walls.NONE;
+        return Wall.NONE;
     }
 
     @Override
-    public void reflect(Walls collisionTo) {
-        switch(collisionTo) {
+    public void collisionWithWall(Wall wall) {
+        switch(wall) {
             case TOP:
             case BOTTOM: {
                 velocity.reflectDy();
@@ -34,6 +34,16 @@ public class BoundedBall extends MovableBall {
                 break;
             }
             default:
+        }
+    }
+
+    @Override
+    public void collisionWithBall(Ball other) {
+        Vector temp = getVelocity();
+
+        if (other instanceof BoundedBall) {
+            ((BoundedBall) other).setVelocity(temp);
+            setVelocity(((BoundedBall) other).getVelocity());
         }
     }
 }

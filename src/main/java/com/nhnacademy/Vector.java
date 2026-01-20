@@ -22,7 +22,11 @@ public class Vector {
     public void reflectDy() { dy = -dy; }
 
     public double magnitude() {
-        return Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    public double dot(Vector other) {
+        return dx * other.getDx() + dy * other.getDy();
     }
 
     public Vector normalize() {
