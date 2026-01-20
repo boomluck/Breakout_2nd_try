@@ -17,9 +17,9 @@ public class Vector {
         return dy;
     }
 
-    public double reflectDx() { return dx = -dx; }
+    public void reflectDx() { dx = -dx; }
 
-    public double reflectDy() { return dy = -dy; }
+    public void reflectDy() { dy = -dy; }
 
     public double magnitude() {
         return Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));

@@ -8,16 +8,32 @@ public class BoundedBall extends MovableBall {
     }
 
     @Override
-    public boolean isOutOfBounds(World world) {
+    public Walls collidesTo(World world) {
         Point p = getPoint();
+        double r = getRadius();
 
-        return p.getX() <= 0
-            || p.getX() >= world.getWidth()
-            || p.getY() <= 0
-            || p.getY() >= world.getHeight();
+        if(p.getX() - r <= 0) { return Walls.LEFT; }
+        if(p.getX() + r >= world.getWidth()) { return Walls.RIGHT; }
+        if(p.getY() - r <= 0) { return Walls.TOP; }
+        if(p.getY() + r >= world.getHeight()) { return Walls.BOTTOM; }
+
+        return Walls.NONE;
     }
 
-    public void onBoundaryCollision(World world) {
-        
+    @Override
+    public void reflect(Walls collisionTo) {
+        switch(collisionTo) {
+            case TOP:
+            case BOTTOM: {
+                velocity.reflectDy();
+                break;
+            }
+            case LEFT:
+            case RIGHT: {
+                velocity.reflectDx();
+                break;
+            }
+            default:
+        }
     }
 }
