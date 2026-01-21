@@ -8,14 +8,32 @@ public class BoundedWorld extends MovableWorld{
     }
 
     public void addRandomBoundedBalls(int numberOfBalls) {
-        for(int i = 0; i < numberOfBalls; i++) {
+        int created = 0;
+
+        while(created < numberOfBalls) {
             double randomRadius = random.nextDouble(10, 50);
-            double randomX = random.nextDouble(0, getHeight());
-            double randomY = random.nextDouble(0, getHeight());
+            double randomX = random.nextDouble(randomRadius, getWidth() - randomRadius);
+            double randomY = random.nextDouble(randomRadius, getHeight() - randomRadius);
             Color randomColor = Color.color(random.nextDouble(), random.nextDouble(), random.nextDouble());
             Vector randomVector = new Vector(random.nextDouble(-4, 4), random.nextDouble(-4, 4));
 
-            balls.add(new BoundedBall(new Point(randomX, randomY), randomRadius, randomColor, randomVector));
+            boolean canSpawn = true;
+
+            Ball candidate = new BoundedBall(new Point(randomX, randomY), randomRadius, randomColor, randomVector);
+
+            for (int i = 0; i < getBalls().size(); i++) {
+                Ball a = balls.get(i);
+
+                if(a.getPoint().distanceTo(candidate.getPoint()) < a.getRadius() + candidate.getRadius()) {
+                    canSpawn = false;
+                    break;
+                }
+            }
+
+            if(canSpawn) {
+                balls.add(candidate);
+                created++;
+            }
         }
     }
 
@@ -34,6 +52,7 @@ public class BoundedWorld extends MovableWorld{
 
     @Override
     public void update() {
+        // 1. 공과 벽의 충돌 판단 로직
         for(Ball ball : getBalls()) {
             ball.move();
 
@@ -43,5 +62,8 @@ public class BoundedWorld extends MovableWorld{
                 ball.collisionWithWall(wallCollision);
             }
         }
+
+        // 2. 공과 공의 충돌 판단 로직
+        checkBallCollision();
     }
 }

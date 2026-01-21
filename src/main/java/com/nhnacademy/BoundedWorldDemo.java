@@ -24,7 +24,7 @@ public class BoundedWorldDemo extends Application {
         canvas = new Canvas(800, 600);
         gc = canvas.getGraphicsContext2D();
 
-        boundedWorld.addRandomBoundedBalls(5);
+        boundedWorld.addRandomBoundedBalls(10);
 
         loop = new AnimationTimer() {
             @Override

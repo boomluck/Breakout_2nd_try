@@ -42,8 +42,8 @@ public class BoundedBall extends MovableBall {
         Vector temp = getVelocity();
 
         if (other instanceof BoundedBall) {
-            ((BoundedBall) other).setVelocity(temp);
             setVelocity(((BoundedBall) other).getVelocity());
+            ((BoundedBall) other).setVelocity(temp);
         }
     }
 }
