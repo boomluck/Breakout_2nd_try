@@ -24,9 +24,9 @@ public class MixedWorldDemo extends Application {
         canvas = new Canvas(mixedWorld.getWidth(), mixedWorld.getHeight());
         gc = canvas.getGraphicsContext2D();
 
-        // mixedWorld.addBricks();
-        mixedWorld.addBrick(new Brick(new Point(200, 150), 400, 300, Color.BLACK));
-        mixedWorld.addBall(new MixedBall(new Point(100, 100), 20, Color.BLACK, new Vector(2, 2)));
+        mixedWorld.addBricks();
+        // mixedWorld.addBrick(new Brick(new Point(200, 150), 400, 300, Color.BLACK));
+        mixedWorld.addBall(new MixedBall(new Point(400, 400), 20, Color.RED, new Vector(2, 2)));
 
         loop = new AnimationTimer() {
             @Override

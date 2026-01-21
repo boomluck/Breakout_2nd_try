@@ -96,6 +96,7 @@ public class MixedWorld extends BoundedWorld {
             && ballY <= brickY + brickH) {
                 if(ballX + r >= brickX) {
                     ball.resolveCollisionWithWall(Wall.RIGHT);
+                    bricks.remove(brick);
                 }
             }
             // 브릭의 우측면을 충돌하는 경우
@@ -105,6 +106,7 @@ public class MixedWorld extends BoundedWorld {
             && ballY <= brickY + brickH) {
                 if(ballX - r <= brickX + brickW) {
                     ball.resolveCollisionWithWall(Wall.LEFT);
+                    bricks.remove(brick);
                 }
             }
             // 브릭의 상측면을 충돌하는 경우
@@ -114,6 +116,7 @@ public class MixedWorld extends BoundedWorld {
             && ballX <= brickX + brickW) {
                 if(ballY + r >= brickY) {
                     ball.resolveCollisionWithWall(Wall.BOTTOM);
+                    bricks.remove(brick);
                 }
             }
             // 브릭의 하측면을 충돌하는 경우
@@ -123,6 +126,7 @@ public class MixedWorld extends BoundedWorld {
             && ballX <= brickX + brickW) {
                 if(ballY - r <= brickY + brickH) {
                     ball.resolveCollisionWithWall(Wall.TOP);
+                    bricks.remove(brick);
                 }
             }
         }
