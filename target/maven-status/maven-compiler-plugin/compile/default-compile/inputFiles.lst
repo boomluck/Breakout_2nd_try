@@ -2,7 +2,10 @@
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/BoundedBall.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/BoundedWorld.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/BoundedWorldDemo.java
+/Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/Brick.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/FirstJavaFXApp.java
+/Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/MixedWorld.java
+/Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/MixedWorldDemo.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/MovableBall.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/MovableWorld.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/MovableWorldDemo.java
@@ -11,7 +14,7 @@
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/PaintableWorldDemo.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/Point.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/Vector.java
-/Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/Walls.java
+/Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/Wall.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/World.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/com/nhnacademy/WorldDemo.java
 /Users/joseondae/IdeaProjects/Breakout_2nd_try/src/main/java/module-info.java
