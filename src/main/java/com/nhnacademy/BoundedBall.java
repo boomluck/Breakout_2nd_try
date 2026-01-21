@@ -21,7 +21,7 @@ public class BoundedBall extends MovableBall {
     }
 
     @Override
-    public void collisionWithWall(Wall wall) {
+    public void resolveCollisionWithWall(Wall wall) {
         switch(wall) {
             case TOP:
             case BOTTOM: {
@@ -38,7 +38,7 @@ public class BoundedBall extends MovableBall {
     }
 
     @Override
-    public void collisionWithBall(Ball other) {
+    public void resolveCollisionWithBall(Ball other) {
         Vector temp = getVelocity();
 
         if (other instanceof BoundedBall) {

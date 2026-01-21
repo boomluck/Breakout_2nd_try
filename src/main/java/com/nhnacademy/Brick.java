@@ -16,6 +16,22 @@ public class Brick {
         this.color = color;
     }
 
+    public Point getPoint() {
+        return point;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getArea() {
+        return width * height;
+    }
+
     public void drawBricks(GraphicsContext gc) {
         double x = point.getX();
         double y = point.getY();

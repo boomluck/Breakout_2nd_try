@@ -44,7 +44,7 @@ public class BoundedWorld extends MovableWorld{
                 Ball b = balls.get(j);
 
                 if(a.getPoint().distanceTo(b.getPoint()) <= a.getRadius() + b.getRadius()) {
-                    a.collisionWithBall(b);
+                    a.resolveCollisionWithBall(b);
                 }
             }
         }
@@ -59,7 +59,7 @@ public class BoundedWorld extends MovableWorld{
             Wall wallCollision = ball.checkWallCollision(this);
 
             if (wallCollision != Wall.NONE) {
-                ball.collisionWithWall(wallCollision);
+                ball.resolveCollisionWithWall(wallCollision);
             }
         }
 
