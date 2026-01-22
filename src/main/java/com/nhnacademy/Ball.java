@@ -55,4 +55,6 @@ public class Ball {
     }
 
     public void resolveCollisionWithBrick() {}
+
+    public void resolveCollisionWithPaddle(Wall wall, Paddle paddle) {}
 }

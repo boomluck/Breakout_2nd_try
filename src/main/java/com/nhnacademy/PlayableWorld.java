@@ -10,7 +10,7 @@ public class PlayableWorld extends MixedWorld {
     }
 
     public void addPaddle() {
-        paddle = new Paddle(new Point(350, 550), 100, 20);
+        paddle = new Paddle(new Point(350, 550), 100, 20, new Vector(0, 0));
     }
 
     @Override
@@ -59,6 +59,14 @@ public class PlayableWorld extends MixedWorld {
         }
     }
 
+    public void leftKeyReleased() {
+        paddle.leftKeyReleased();
+    }
+
+    public void rightKeyReleased() {
+        paddle.rightKeyReleased();
+    }
+
     public void checkPaddleCollision() {
         Ball ball = balls.getFirst();
 
@@ -77,7 +85,7 @@ public class PlayableWorld extends MixedWorld {
                 && ballY >= paddleY
                 && ballY <= paddleY + paddleH) {
             if(ballX + r >= paddleX) {
-                ball.resolveCollisionWithWall(Wall.RIGHT);
+                ball.resolveCollisionWithPaddle(Wall.RIGHT, paddle);
             }
         }
         // 우측면을 충돌하는 경우
@@ -86,7 +94,7 @@ public class PlayableWorld extends MixedWorld {
                 && ballY >= paddleY
                 && ballY <= paddleY + paddleH) {
             if(ballX - r <= paddleX + paddleW) {
-                ball.resolveCollisionWithWall(Wall.LEFT);
+                ball.resolveCollisionWithPaddle(Wall.LEFT, paddle);
             }
         }
         // 상측면을 충돌하는 경우
@@ -95,7 +103,7 @@ public class PlayableWorld extends MixedWorld {
                 && ballX >= paddleX
                 && ballX <= paddleX + paddleW) {
             if(ballY + r >= paddleY) {
-                ball.resolveCollisionWithWall(Wall.BOTTOM);
+                ball.resolveCollisionWithPaddle(Wall.BOTTOM, paddle);
             }
         }
     }

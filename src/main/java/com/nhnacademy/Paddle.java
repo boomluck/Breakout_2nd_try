@@ -7,11 +7,13 @@ public class Paddle {
     Point point;
     double width;
     double height;
+    Vector velocity;
 
-    public Paddle(Point point, double width, double height) {
+    public Paddle(Point point, double width, double height, Vector velocity) {
         this.point = point;
         this.width = width;
         this.height = height;
+        this.velocity = velocity;
     }
 
     public Point getPoint() {
@@ -26,12 +28,28 @@ public class Paddle {
         return height;
     }
 
+    public Vector getVelocity() {
+        return velocity;
+    }
+
     public void leftKeyPressed() {
-        point = new Point(point.getX() - 5, point.getY());
+        velocity = new Vector(-10, 0);
+        point.translate(velocity);
     }
 
     public void rightKeyPressed() {
-        point = new Point(point.getX() + 5, point.getY());
+        velocity = new Vector(10, 0);
+        point.translate(velocity);
+    }
+
+    public void leftKeyReleased() {
+        velocity = new Vector(0, 0);
+        point.translate(velocity);
+    }
+
+    public void rightKeyReleased() {
+        velocity = new Vector(0, 0);
+        point.translate(velocity);
     }
 
     public void drawPaddle(GraphicsContext gc) {

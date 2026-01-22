@@ -21,6 +21,14 @@ public class Vector {
 
     public void reflectDy() { dy = -dy; }
 
+    public void setDx(double dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(double dy) {
+        this.dy = dy;
+    }
+
     public double magnitude() {
         return Math.sqrt(dx * dx + dy * dy);
     }

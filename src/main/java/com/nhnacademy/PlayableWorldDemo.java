@@ -27,7 +27,7 @@ public class PlayableWorldDemo extends Application {
 
         // 그려야 할 객체
         playableWorld.addBricks();
-        playableWorld.addBall(new PlayableBall(new Point(300, 300), 20, Color.RED, new Vector(2, 2)));
+        playableWorld.addBall(new PlayableBall(new Point(300, 300), 10, Color.RED, new Vector(2, 2)));
         playableWorld.addPaddle();
 
         loop = new AnimationTimer() {
@@ -61,6 +61,15 @@ public class PlayableWorldDemo extends Application {
             if (event.getCode() == KeyCode.RIGHT) {
                 playableWorld.rightKeyPressed();
             }
+        });
+
+        scene.setOnKeyReleased(event -> {
+           if (event.getCode() == KeyCode.LEFT) {
+               playableWorld.leftKeyReleased();
+           }
+           if (event.getCode() == KeyCode.RIGHT) {
+               playableWorld.rightKeyReleased();
+           }
         });
     }
 

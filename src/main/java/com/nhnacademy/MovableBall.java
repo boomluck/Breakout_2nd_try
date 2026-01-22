@@ -1,5 +1,6 @@
 package com.nhnacademy;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class MovableBall extends PaintableBall {
@@ -20,5 +21,24 @@ public class MovableBall extends PaintableBall {
 
     public void move() {
         point.translate(velocity);
+    }
+
+    @Override
+    public void drawBalls(GraphicsContext gc) {
+        Point point = getPoint();
+        double radius = getRadius();
+        Color color = getColor();
+
+        double x = point.getX() - radius;
+        double y = point.getY() - radius;
+        double w = radius * 2;
+        double h = radius * 2;
+
+        gc.setFill(color);
+        gc.fillOval(x, y, w, h);
+
+        Vector velocity = getVelocity();
+        gc.setFill(Color.BLACK);
+        gc.fillText(Double.toString(velocity.getDx()) + Double.toString(velocity.getDy()), x, y);
     }
 }
