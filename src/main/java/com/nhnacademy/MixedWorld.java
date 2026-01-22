@@ -28,7 +28,7 @@ public class MixedWorld extends BoundedWorld {
         double totalBrickWidth = brickPerRow * brickWidth + (brickPerRow - 1) * brickGap;
         double remain = usableWidth - totalBrickWidth;
         double x = wallGap + remain / 2;
-        double y = wallGap;
+        double y = 20 + wallGap;
         Color brickColor = Color.BLUE;
 
         for(int i=0; i < COLUMNS; i++) {

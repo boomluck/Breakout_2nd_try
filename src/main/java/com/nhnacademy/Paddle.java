@@ -14,6 +14,18 @@ public class Paddle {
         this.height = height;
     }
 
+    public Point getPoint() {
+        return point;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
     public void leftKeyPressed() {
         point = new Point(point.getX() - 5, point.getY());
     }

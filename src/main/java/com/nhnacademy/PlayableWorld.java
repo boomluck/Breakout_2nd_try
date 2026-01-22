@@ -15,11 +15,11 @@ public class PlayableWorld extends MixedWorld {
 
     @Override
     public void draw(GraphicsContext gc) {
-        for(Ball ball : getBalls()) {
-            ball.drawBalls(gc);
-        }
         for(Brick brick : getBricks()) {
             brick.drawBricks(gc);
+        }
+        for(Ball ball : getBalls()) {
+            ball.drawBalls(gc);
         }
         paddle.drawPaddle(gc);
     }
@@ -48,14 +48,55 @@ public class PlayableWorld extends MixedWorld {
     }
 
     public void leftKeyPressed() {
-        paddle.leftKeyPressed();
+        if(paddle.getPoint().getX() > 0) {
+            paddle.leftKeyPressed();
+        }
     }
 
     public void rightKeyPressed() {
-        paddle.rightKeyPressed();
+        if(paddle.getPoint().getX() + paddle.getWidth() < width) {
+            paddle.rightKeyPressed();
+        }
     }
 
     public void checkPaddleCollision() {
+        Ball ball = balls.getFirst();
 
+        double ballX = ball.getPoint().getX();
+        double ballY = ball.getPoint().getY();
+        double r = ball.getRadius();
+
+        double paddleX = paddle.getPoint().getX();
+        double paddleY = paddle.getPoint().getY();
+        double paddleW = paddle.getWidth();
+        double paddleH = paddle.getHeight();
+
+        // 좌측면을 충돌하는 경우
+        if(ballX - r >= 0
+                && ballX + r <= paddleX
+                && ballY >= paddleY
+                && ballY <= paddleY + paddleH) {
+            if(ballX + r >= paddleX) {
+                ball.resolveCollisionWithWall(Wall.RIGHT);
+            }
+        }
+        // 우측면을 충돌하는 경우
+        if(ballX - r >= paddleW + paddleX
+                && ballX + r <= getWidth()
+                && ballY >= paddleY
+                && ballY <= paddleY + paddleH) {
+            if(ballX - r <= paddleX + paddleW) {
+                ball.resolveCollisionWithWall(Wall.LEFT);
+            }
+        }
+        // 상측면을 충돌하는 경우
+        if(ballY - r >= 0
+                && ballY + r <= paddleY
+                && ballX >= paddleX
+                && ballX <= paddleX + paddleW) {
+            if(ballY + r >= paddleY) {
+                ball.resolveCollisionWithWall(Wall.BOTTOM);
+            }
+        }
     }
 }

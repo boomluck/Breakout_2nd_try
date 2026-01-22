@@ -27,7 +27,7 @@ public class PlayableWorldDemo extends Application {
 
         // 그려야 할 객체
         playableWorld.addBricks();
-        playableWorld.addBall(new PlayableBall(new Point(400, 400), 20, Color.RED, new Vector(2, 2)));
+        playableWorld.addBall(new PlayableBall(new Point(300, 300), 20, Color.RED, new Vector(2, 2)));
         playableWorld.addPaddle();
 
         loop = new AnimationTimer() {
@@ -48,7 +48,13 @@ public class PlayableWorldDemo extends Application {
         stage.setScene(scene);
         stage.show();
 
+        String input = "Press SPACE BAR to start";
+        gc.fillText(input, 300, 300);
+
         scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                loop.start();
+            }
             if (event.getCode() == KeyCode.LEFT) {
                 playableWorld.leftKeyPressed();
             }
@@ -56,8 +62,6 @@ public class PlayableWorldDemo extends Application {
                 playableWorld.rightKeyPressed();
             }
         });
-
-        loop.start();
     }
 
     public static void main(String[] args) {
