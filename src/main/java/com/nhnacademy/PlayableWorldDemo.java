@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PlayableWorldDemo extends Application {
@@ -18,8 +19,6 @@ public class PlayableWorldDemo extends Application {
     Scene scene;
     Stage stage;
 
-    Paddle paddle;
-
     @Override
     public void start(Stage stage) {
         playableWorld = new PlayableWorld(800, 600);
@@ -27,20 +26,27 @@ public class PlayableWorldDemo extends Application {
         gc = canvas.getGraphicsContext2D();
 
         // 그려야 할 객체
-        //playableWorld.addBricks();
-        //playableWorld.addBall();
-        paddle = new Paddle(new Point(350, 550), 100, 20, new Vector(0, 0));
+        playableWorld.addBricks();
+        playableWorld.addBall(new PlayableBall(new Point(400, 400), 20, Color.RED, new Vector(2, 2)));
+        playableWorld.addPaddle();
 
         loop = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                gc.setFill(Color.WHITE);
+                gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
                 playableWorld.update();
                 playableWorld.draw(gc);
             }
         };
 
+        playableWorld.draw(gc);
+
         pane = new Pane(canvas);
         scene = new Scene(pane);
+        stage.setScene(scene);
+        stage.show();
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.LEFT) {
@@ -50,18 +56,6 @@ public class PlayableWorldDemo extends Application {
                 playableWorld.rightKeyPressed();
             }
         });
-
-        scene.setOnKeyReleased(event -> {
-            if(event.getCode() == KeyCode.LEFT) {
-                playableWorld.leftKeyReleased();
-            }
-            if(event.getCode() == KeyCode.RIGHT) {
-                playableWorld.rightKeyReleased();
-            }
-        });
-
-        stage.setScene(scene);
-        stage.show();
 
         loop.start();
     }
