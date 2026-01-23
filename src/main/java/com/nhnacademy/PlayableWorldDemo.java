@@ -6,8 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class PlayableWorldDemo extends Application {
@@ -18,6 +20,7 @@ public class PlayableWorldDemo extends Application {
     Pane pane;
     Scene scene;
     Stage stage;
+    Boolean gameRunning = false;
 
     @Override
     public void start(Stage stage) {
@@ -25,10 +28,7 @@ public class PlayableWorldDemo extends Application {
         canvas = new Canvas(playableWorld.getWidth(), playableWorld.getHeight());
         gc = canvas.getGraphicsContext2D();
 
-        // 그려야 할 객체
-        playableWorld.addBricks();
-        playableWorld.addBall(new PlayableBall(new Point(300, 300), 10, Color.RED, new Vector(2, 2)));
-        playableWorld.addPaddle();
+        gameInit();
 
         loop = new AnimationTimer() {
             @Override
@@ -38,6 +38,11 @@ public class PlayableWorldDemo extends Application {
 
                 playableWorld.update();
                 playableWorld.draw(gc);
+
+                if(playableWorld.gameOver) {
+                    playableWorld.gameOver(gc);
+                    loop.stop();
+                }
             }
         };
 
@@ -48,13 +53,9 @@ public class PlayableWorldDemo extends Application {
         stage.setScene(scene);
         stage.show();
 
-        String input = "Press SPACE BAR to start";
-        gc.fillText(input, 300, 300);
+        pressToStartMessage();
 
         scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.SPACE) {
-                loop.start();
-            }
             if (event.getCode() == KeyCode.LEFT) {
                 playableWorld.leftKeyPressed();
             }
@@ -71,6 +72,46 @@ public class PlayableWorldDemo extends Application {
                playableWorld.rightKeyReleased();
            }
         });
+
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.SPACE && !gameRunning) {
+                loop.start();
+                gameRunning = true;
+            }
+            if (event.getCode() == KeyCode.SPACE && playableWorld.gameOver) {
+                gameReset();
+                gameInit();
+                playableWorld.gameOver = false;
+                gameRunning = false;
+                screenClear();
+                playableWorld.draw(gc);
+                pressToStartMessage();
+            }
+        });
+    }
+
+    public void gameReset() {
+        playableWorld.score = 0;
+        playableWorld.bricks.clear();
+        playableWorld.balls.clear();
+        playableWorld.paddle = null;
+    }
+
+    public void gameInit() {
+        playableWorld.addBricks();
+        playableWorld.addBall(new PlayableBall(new Point(300, 300), 10, Color.RED, new Vector(2, 2)));
+        playableWorld.addPaddle();
+    }
+
+    public void pressToStartMessage() {
+        String input = "Press SPACE BAR to start";
+        gc.setFont(Font.font(24));
+        gc.fillText(input, 300, 300);
+    }
+
+    public void screenClear() {
+        gc.setFill(Color.WHITE);
+        gc.fillRect(0, 0, playableWorld.getWidth(), playableWorld.getHeight());
     }
 
     public static void main(String[] args) {

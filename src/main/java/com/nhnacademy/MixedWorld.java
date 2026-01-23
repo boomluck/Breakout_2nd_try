@@ -2,12 +2,14 @@ package com.nhnacademy;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MixedWorld extends BoundedWorld {
     List<Brick> bricks = new ArrayList<>();
+    int score = 0;
 
     public MixedWorld(double width, double height) {
         super(width, height);
@@ -42,8 +44,10 @@ public class MixedWorld extends BoundedWorld {
         return new ArrayList<>(bricks);
     }
 
-    public void removeBrick(Brick brick) {
-        bricks.remove(brick);
+    public void drawScore(GraphicsContext gc) {
+        gc.setFill(Color.BLACK);
+        gc.setFont(Font.font(20));
+        gc.fillText("Score : " + Integer.toString(score), 30, 18);
     }
 
     @Override
@@ -54,6 +58,7 @@ public class MixedWorld extends BoundedWorld {
         for(Brick brick : getBricks()) {
             brick.drawBricks(gc);
         }
+        drawScore(gc);
     }
 
     @Override
@@ -97,6 +102,7 @@ public class MixedWorld extends BoundedWorld {
                 if(ballX + r >= brickX) {
                     ball.resolveCollisionWithWall(Wall.RIGHT);
                     bricks.remove(brick);
+                    score += 100;
                 }
             }
             // 브릭의 우측면을 충돌하는 경우
@@ -107,6 +113,7 @@ public class MixedWorld extends BoundedWorld {
                 if(ballX - r <= brickX + brickW) {
                     ball.resolveCollisionWithWall(Wall.LEFT);
                     bricks.remove(brick);
+                    score += 100;
                 }
             }
             // 브릭의 상측면을 충돌하는 경우
@@ -117,6 +124,7 @@ public class MixedWorld extends BoundedWorld {
                 if(ballY + r >= brickY) {
                     ball.resolveCollisionWithWall(Wall.BOTTOM);
                     bricks.remove(brick);
+                    score += 100;
                 }
             }
             // 브릭의 하측면을 충돌하는 경우
@@ -127,6 +135,7 @@ public class MixedWorld extends BoundedWorld {
                 if(ballY - r <= brickY + brickH) {
                     ball.resolveCollisionWithWall(Wall.TOP);
                     bricks.remove(brick);
+                    score += 100;
                 }
             }
         }

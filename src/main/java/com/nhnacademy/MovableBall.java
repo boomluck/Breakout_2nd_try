@@ -37,8 +37,8 @@ public class MovableBall extends PaintableBall {
         gc.setFill(color);
         gc.fillOval(x, y, w, h);
 
-        Vector velocity = getVelocity();
-        gc.setFill(Color.BLACK);
-        gc.fillText(Double.toString(velocity.getDx()) + Double.toString(velocity.getDy()), x, y);
+//        Vector velocity = getVelocity();
+//        gc.setFill(Color.BLACK);
+//        gc.fillText(Double.toString(velocity.getDx()) + Double.toString(velocity.getDy()), x, y);
     }
 }

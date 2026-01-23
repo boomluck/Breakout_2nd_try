@@ -12,10 +12,10 @@ public class BoundedBall extends MovableBall {
         Point p = getPoint();
         double r = getRadius();
 
+        if(p.getY() + r >= world.getHeight()) { return Wall.BOTTOM; }
         if(p.getX() - r <= 0) { return Wall.LEFT; }
         if(p.getX() + r >= world.getWidth()) { return Wall.RIGHT; }
         if(p.getY() - r <= 0) { return Wall.TOP; }
-        if(p.getY() + r >= world.getHeight()) { return Wall.BOTTOM; }
 
         return Wall.NONE;
     }

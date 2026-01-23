@@ -56,10 +56,10 @@ public class BoundedWorld extends MovableWorld{
         for(Ball ball : getBalls()) {
             ball.move();
 
-            Wall wallCollision = ball.checkWallCollision(this);
+            Wall wall = ball.checkWallCollision(this);
 
-            if (wallCollision != Wall.NONE) {
-                ball.resolveCollisionWithWall(wallCollision);
+            if (wall != Wall.NONE) {
+                ball.resolveCollisionWithWall(wall);
             }
         }
 

@@ -47,8 +47,10 @@ public class Ball {
         // MovableBall에 최초로 등장하는 move()메서드의 타입 충돌 문제를 해결하기 위한 임시 방편
     }
 
-    public void resolveCollisionWithWall(Wall collisionTo) {
+    public void resolveCollisionWithWall(Wall wall) {
     }
+
+    public void resolveCollisionWithWall(Wall wall, PlayableWorld playableWorld) {}
 
     public void resolveCollisionWithBall(Ball other) {
 

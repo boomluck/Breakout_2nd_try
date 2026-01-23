@@ -33,12 +33,12 @@ public class Paddle {
     }
 
     public void leftKeyPressed() {
-        velocity = new Vector(-10, 0);
+        velocity.setDx(velocity.getDx() - 2);
         point.translate(velocity);
     }
 
     public void rightKeyPressed() {
-        velocity = new Vector(10, 0);
+        velocity.setDx(velocity.getDx() + 2);
         point.translate(velocity);
     }
 

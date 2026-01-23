@@ -1,9 +1,12 @@
 package com.nhnacademy;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class PlayableWorld extends MixedWorld {
     Paddle paddle;
+    Boolean gameOver = false;
 
     public PlayableWorld(double width, double height) {
         super(width, height);
@@ -11,6 +14,17 @@ public class PlayableWorld extends MixedWorld {
 
     public void addPaddle() {
         paddle = new Paddle(new Point(350, 550), 100, 20, new Vector(0, 0));
+    }
+
+    public void setGameOver() {
+        gameOver = true;
+    }
+
+    public void gameOver(GraphicsContext gc) {
+        gc.setFont(Font.font(24));
+        gc.setFill(Color.BLACK);
+        gc.fillText("GAME OVER", 350, 300);
+        gc.fillText("Press SPACE BAR to restart", 300, 330);
     }
 
     @Override
@@ -22,6 +36,7 @@ public class PlayableWorld extends MixedWorld {
             ball.drawBalls(gc);
         }
         paddle.drawPaddle(gc);
+        drawScore(gc);
     }
 
     @Override
@@ -30,21 +45,24 @@ public class PlayableWorld extends MixedWorld {
         for(Ball ball : getBalls()) {
             ball.move();
 
-            Wall wallCollision = ball.checkWallCollision(this);
+            Wall wall = ball.checkWallCollision(this);
 
-            if (wallCollision != Wall.NONE) {
-                ball.resolveCollisionWithWall(wallCollision);
+            if (wall != Wall.NONE) {
+                ball.resolveCollisionWithWall(wall, this);
             }
         }
 
         // 2. 공과 공의 충돌 판단 로직
-        checkBallCollision();
+        //checkBallCollision();
 
         // 3. 공과 브릭의 충돌 판단 로직
         checkBrickCollision();
 
         // 4. 공과 패들의 충돌 판단 로직
         checkPaddleCollision();
+
+        // 5. 점수
+
     }
 
     public void leftKeyPressed() {
