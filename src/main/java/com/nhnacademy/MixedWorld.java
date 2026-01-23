@@ -15,10 +15,6 @@ public class MixedWorld extends BoundedWorld {
         super(width, height);
     }
 
-    public void addBrick(Brick brick) {
-        bricks.add(brick);
-    }
-
     public void addBricks() {
         int COLUMNS = 5;
         double brickWidth = 38;
@@ -35,7 +31,7 @@ public class MixedWorld extends BoundedWorld {
 
         for(int i=0; i < COLUMNS; i++) {
             for (int j = 0; j < brickPerRow; j++) {
-                bricks.add(new Brick(new Point(x + j * (brickWidth + brickGap), y + i * (brickHeight + brickGap * 2)), brickWidth, brickHeight, brickColor));
+                objects.add(new Brick(new Point(x + j * (brickWidth + brickGap), y + i * (brickHeight + brickGap * 2)), brickWidth, brickHeight, brickColor));
             }
         }
     }
@@ -53,10 +49,10 @@ public class MixedWorld extends BoundedWorld {
     @Override
     public void draw(GraphicsContext gc) {
         for(Ball ball : getBalls()) {
-            ball.drawBalls(gc);
+            ball.draw(gc);
         }
         for(Brick brick : getBricks()) {
-            brick.drawBricks(gc);
+            brick.draw(gc);
         }
         drawScore(gc);
     }

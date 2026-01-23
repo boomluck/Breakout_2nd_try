@@ -24,7 +24,7 @@ public class MovableBall extends PaintableBall {
     }
 
     @Override
-    public void drawBalls(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
         Point point = getPoint();
         double radius = getRadius();
         Color color = getColor();

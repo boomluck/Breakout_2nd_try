@@ -4,6 +4,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayableWorld extends MixedWorld {
     Paddle paddle;
     Boolean gameOver = false;
@@ -29,13 +32,18 @@ public class PlayableWorld extends MixedWorld {
 
     @Override
     public void draw(GraphicsContext gc) {
-        for(Brick brick : getBricks()) {
-            brick.drawBricks(gc);
+//        for(Brick brick : getBricks()) {
+//            brick.draw(gc);
+//        }
+//        for(Ball ball : getBalls()) {
+//            ball.draw(gc);
+//        }
+//        paddle.draw(gc);
+
+        for(Drawable obj : objects) {
+            obj.draw(gc);
         }
-        for(Ball ball : getBalls()) {
-            ball.drawBalls(gc);
-        }
-        paddle.drawPaddle(gc);
+
         drawScore(gc);
     }
 

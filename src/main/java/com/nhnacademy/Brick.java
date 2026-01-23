@@ -3,7 +3,7 @@ package com.nhnacademy;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Brick {
+public class Brick implements Drawable {
     Point point;
     double width;
     double height;
@@ -28,11 +28,7 @@ public class Brick {
         return height;
     }
 
-    public double getArea() {
-        return width * height;
-    }
-
-    public void drawBricks(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
         double x = point.getX();
         double y = point.getY();
 

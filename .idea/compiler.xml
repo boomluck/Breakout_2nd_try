@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cannongame_2nd_try_from_the_beginning" />
+        <module name="Breakout_2nd_try_from_the_beginning" />
       </profile>
     </annotationProcessing>
   </component>

@@ -9,6 +9,7 @@ public class World {
     double width;
     double height;
     List<Ball> balls = new ArrayList<>();
+    List<Drawable> objects = new ArrayList<>();
 
     public World(double width, double height) {
         this.width = width;
@@ -24,7 +25,7 @@ public class World {
     }
 
     public void addBall(Ball ball) {
-        balls.add(ball);
+        objects.add(ball);
     }
 
     public void removeBalls(Ball ball) {
@@ -37,7 +38,7 @@ public class World {
 
     public void draw(GraphicsContext gc) {
         for(Ball ball : getBalls()) {
-            ball.drawBalls(gc);
+            ball.draw(gc);
         }
     }
 }

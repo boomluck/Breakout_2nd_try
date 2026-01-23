@@ -3,7 +3,7 @@ package com.nhnacademy;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Ball {
+public class Ball implements Drawable {
     Point point;
     double radius;
 
@@ -25,7 +25,7 @@ public class Ball {
         return radius;
     }
 
-    public void drawBalls(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
         Point point = getPoint();
         double radius = getRadius();
 

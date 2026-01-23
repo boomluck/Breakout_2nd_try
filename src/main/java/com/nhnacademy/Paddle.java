@@ -3,7 +3,7 @@ package com.nhnacademy;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Paddle {
+public class Paddle implements Drawable {
     Point point;
     double width;
     double height;
@@ -52,7 +52,7 @@ public class Paddle {
         point.translate(velocity);
     }
 
-    public void drawPaddle(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
         double x = point.getX();
         double y = point.getY();
 
